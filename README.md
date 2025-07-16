@@ -1,0 +1,1 @@
+# sphinx-modern-pdf-style
