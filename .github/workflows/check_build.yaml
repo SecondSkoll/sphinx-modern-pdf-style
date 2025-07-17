@@ -23,7 +23,7 @@ jobs:
           python-version: '3.11'
       - name: Install requirements
         working-directory: ./docs
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt && apt-get install latexmk fonts-freefont-otf texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-font-utils texlive-lang-cjk texlive-xetex plantuml xindy tex-gyre dvipng
       - name: Build PDF
         working-directory: ./docs
         run: make pdf
