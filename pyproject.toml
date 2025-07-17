@@ -42,3 +42,6 @@ namespaces = false
 
 [tool.setuptools.package-data]
 sphinx_modern_pdf_style = ["assets/*.ttf", "assets/*.pdf", "assets/*.png", "assets/*.txt"]
+
+[tool.setuptools.dynamic]
+version = {attr = "sphinx_modern_pdf_style.__version__"}
