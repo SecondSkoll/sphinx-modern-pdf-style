@@ -4,7 +4,7 @@ from sphinx.application import Sphinx
 from pathlib import Path
 import shutil
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
 assets_dir = Path(__file__).parent / "assets"
 
