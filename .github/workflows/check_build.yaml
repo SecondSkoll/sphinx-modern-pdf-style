@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [ main ]
 
+  workflow_dispatch:
+
 jobs:
   sphinx:
     runs-on: ubuntu-latest
