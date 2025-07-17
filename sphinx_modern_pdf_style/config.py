@@ -1,14 +1,11 @@
 """Sphinx configuration for sphinx-modern-pdf-style"""
 
 import ast
-import importlib.util
-import os
 from pathlib import Path
 from typing import Any
 
 from sphinx.application import Sphinx
 from sphinx.config import Config
-from sphinx.errors import ConfigError
 from sphinx.util import logging
 
 import yaml
