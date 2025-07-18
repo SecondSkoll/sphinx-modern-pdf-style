@@ -35,22 +35,34 @@ def config_inited(app: Sphinx, config: SphinxConfig) -> None:  # noqa: PLR0915, 
 
     replacement_keys = ["preamble", "maketitle"]
 
-    modern_pdf_defaults = {
+    # Set variable default
+
+    pdf_values = {
         "author": config.author,
-        "logo_width": "4cm",
     }
 
+    # Update defaults with other defaults defined in YAML replacements file
+
     with open(str(Path(__file__).parent) + "/replacements.yaml", "rt") as file:
-        modern_pdf_defaults.update(yaml.safe_load(file))
+        pdf_values.update(yaml.safe_load(file))
 
-    modern_pdf_defaults["copyright_content"] = modern_pdf_defaults["copyright_content"].replace("<<author>>", config.modern_pdf_options["author"]) 
+    # Set pdf values input from project
 
-    for key, value in modern_pdf_defaults.items():
+    pdf_values.update(config.modern_pdf_options)
+
+    # Update pdf values replacement values for existing content
+
+    pdf_values["copyright_content"] = pdf_values["copyright_content"].replace("<<author>>", pdf_values["author"]) 
+
+    # set config options
+
+    for key, value in pdf_values.items():
         try:
             config.modern_pdf_options.setdefault(key, value)
         except:
             raise Exception("yes this one")
         
+    # set options for general Sphinx config
 
     if config.set_modern_pdf_config:
         config.latex_engine = "xelatex"
@@ -66,7 +78,7 @@ def config_inited(app: Sphinx, config: SphinxConfig) -> None:  # noqa: PLR0915, 
         ):  # pyright: ignore [reportUnnecessaryComparison] type: # ignore[comparison-overlap]
             config.latex_elements = ast.literal_eval(config.latex_config)
 
-            for key, value in config.modern_pdf_options.items():
+            for key, value in pdf_values.items():
                 update_latex_elements(replacement_keys, f"<<{key}>>", value)
 
 def setup(app: Sphinx) -> dict[str, Any]:

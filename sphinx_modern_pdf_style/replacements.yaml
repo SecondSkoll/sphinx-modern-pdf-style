@@ -2,6 +2,8 @@ mainfont_options: UprightFont = *-R, BoldFont = *-B, ItalicFont=*-RI, Extension 
 mainfont: Ubuntu
 monofont_options: UprightFont = *-R, BoldFont = *-B, ItalicFont=*-RI, Extension = .ttf
 monofont: UbuntuMono
+logo_width: 4cm
+logo: placeholder.png
 additional_latex_pagkages: ""
 additional_colors: ""
 additional_environments: ""
