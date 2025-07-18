@@ -14,7 +14,6 @@ import yaml
 class SphinxConfig(Config):
     """Expanded class for linting config options."""
 
-    notfound_urls_prefix: str
     modern_pdf_options: dict[str: str]
 
     def __init__(self) -> None:
@@ -23,6 +22,9 @@ class SphinxConfig(Config):
 def config_inited(app: Sphinx, config: SphinxConfig) -> None:  # noqa: PLR0915, PLR0912
     """Read user-provided values and setup defaults."""
     logger = logging.getLogger(__name__)
+
+    if not config.set_modern_pdf_config:
+        return
 
     def update_latex_elements(element_keys: list, pre_value: str, post_value: str):
         """Update latex_elements file with replaced values"""
