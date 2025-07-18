@@ -41,11 +41,7 @@ def config_inited(app: Sphinx, config: SphinxConfig) -> None:  # noqa: PLR0915, 
     with open(str(Path(__file__).parent) + "/replacements.yaml", "rt") as file:
         modern_pdf_defaults.update(yaml.safe_load(file))
 
-    print(modern_pdf_defaults["copyright_content"])
-
     modern_pdf_defaults["copyright_content"] = modern_pdf_defaults["copyright_content"].replace("<<author>>", config.modern_pdf_options["author"]) 
-    
-    print(modern_pdf_defaults["copyright_content"])
 
     for key, value in modern_pdf_defaults.items():
         try:
@@ -70,7 +66,6 @@ def config_inited(app: Sphinx, config: SphinxConfig) -> None:  # noqa: PLR0915, 
 
             for key, value in config.modern_pdf_options.items():
                 update_latex_elements(replacement_keys, f"<<{key}>>", value)
-
 
 def setup(app: Sphinx) -> dict[str, Any]:
     """Perform the main configuration"""
